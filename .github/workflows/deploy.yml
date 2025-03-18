@@ -18,4 +18,9 @@ jobs:
 
     - name: Deploy to FTP server
       run: |
-        lftp -f "set ftp:ssl-allow no open -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASSWORD }} ftp://${{ secrets.FTP_HOST }} mirror -R ./ /sesandojo.22web.org/htdocs/waranas --ignore-time --delete"
+        lftp -e "
+          set ftp:ssl-allow no
+          open -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASSWORD }} ftp://${{ secrets.FTP_HOST }}
+          mirror -R ./ /sesandojo.22web.org/htdocs/waranas --ignore-time --delete
+          quit
+        "
