@@ -500,8 +500,7 @@ function cachePage($title, $content, $mode, $update) {
 }
 
 function getJsonData($url, $parametro, $authToken, $pageToken) {
-    $paramName = is_numeric($parametro) || is_string($parametro) ? 'id' : 'tipo';
-    $url = $url . '?' . urlencode($paramName) . '=' . urlencode($parametro);
+    $url = $url . '?key=' . urlencode($parametro);
 
     // Origin dinâmico
     $origin = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
